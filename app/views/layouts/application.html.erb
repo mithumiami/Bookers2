@@ -9,6 +9,23 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<header>
+ <% if user_signed_in? %>
+      <div><%= link_to "Bookers", root_path %></div>
+      <div>About</div>
+      <div>Books</div>
+      <div><%= link_to "Log out", destroy_user_session_path, method: :delete %></div>
+    <% else %>
+      <div><%= link_to "Bookers", root_path %></div>
+      <div>About</div>
+      <div><%= link_to "Sign up", new_user_registration_path %></div>
+      <div><%= link_to "Log in", new_user_session_path %></div>
+
+    <% end %>
+</header>
+
+<br />
+
   <body>
     <% if user_signed_in? %>
       <li>
@@ -16,7 +33,7 @@
       </li>
     <% else %>
       <li>
-        <%= link_to "Sign in", new_user_registration_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
       </li>
       <li>
         <%= link_to "Log in", new_user_session_path %>
@@ -24,4 +41,6 @@
     <% end %>
     <%= yield %>
   </body>
+
+  <footer>CopyRight Infratop.inc</footer>
 </html>
